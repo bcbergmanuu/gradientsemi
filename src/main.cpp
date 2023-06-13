@@ -19,15 +19,11 @@ enum switchvalue
 int screenvalue = 0;
 
 void setup() {
-  Serial.begin(115200);
   pinMode(A0, INPUT);
   pinMode(6, OUTPUT);
   pinMode(7, OUTPUT);
   pinMode(8, OUTPUT);
   pinMode(9, OUTPUT);
-  // put your setup code here, to run once:
-  //ADMUX = (1 << REFS1) | (1<<REFS0) | 
-  
 }
 
 measure_state currentstate = st_measure;
@@ -36,18 +32,10 @@ switchvalue previousvalue = sw_OFF; //LED
 switchvalue currentvalue = sw_OFF;
 
 void setLED(switchvalue lednum) {  
-  uint8_t led_number = static_cast<uint8_t>(lednum);
-  Serial.println("numbers");
+  uint8_t led_number = static_cast<uint8_t>(lednum);  
   for (uint8_t x = 6; x < 10; x++ ) {      
-      digitalWrite(x, (led_number == x) ? HIGH : LOW);      
-      Serial.print(x);
-      Serial.print("-");
-      Serial.print(led_number);
-      Serial.print("-");
-      Serial.print((led_number == x));
-      Serial.println("-");
+      digitalWrite(x, (led_number == x) ? HIGH : LOW);
   }    
-
 }
 
 switchvalue getvalue() {
