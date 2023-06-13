@@ -32,10 +32,26 @@ switchvalue previousvalue = sw_OFF; //LED
 switchvalue currentvalue = sw_OFF;
 
 void setLED(switchvalue lednum) {  
-  uint8_t led_number = static_cast<uint8_t>(lednum);  
-  for (uint8_t x = 6; x < 10; x++ ) {      
-      digitalWrite(x, (led_number == x) ? HIGH : LOW);
-  }    
+
+  //PINB4-7 are biosemi pin 0-3
+  switch (lednum)
+  {
+  case sw_OFF:
+    PORTB = 0b00000000;
+    break;  
+  case sw_LED0:
+    PORTB = 0b00010000;
+    break;  
+  case sw_LED1:
+    PORTB = 0b00100000;
+    break;  
+  case sw_LED2:
+    PORTB = 0b01000000;
+    break;
+  case sw_LED3:
+    PORTB = 0b10000000;
+    break;
+  }
 }
 
 switchvalue getvalue() {
