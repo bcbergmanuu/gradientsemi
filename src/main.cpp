@@ -55,7 +55,7 @@ void loop() {
     case st_measure:
       delay(100);
       currentvalue = getvalue();
-      Serial.println(currentvalue);
+
 
       if(currentvalue == previousvalue) {
         currentstate = st_switch;
